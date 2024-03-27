@@ -7,9 +7,12 @@ import java.awt.*;
 public class GUI {
     private Player player1;
     private Player player2;
-    private GameSymbols symbol;
     private ThreeInARow threeInARow;
+    private JTextField[][] cells;
+
     public GUI() {
+        player1 = new Player("Dennis");
+        player2 = new Player("Miriam");
         //Frame size:
         int width = 800;
         int height = 600;
@@ -22,10 +25,26 @@ public class GUI {
 
         //Frame Main Window:
         JFrame frame = new JFrame("Three in a Row");
-        frame.setBounds(x,y,width,height);
+        frame.setBounds(x, y, width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        threeInARow = new ThreeInARow(3, 3, player1, player2, 3);
+        JPanel gamePanel = new JPanel(new GridLayout(3, 3, 5, 5));
 
+        cells = new JTextField[threeInARow.getRows()][threeInARow.getColumns()];
+
+        for (int i = 0; i < threeInARow.getRows(); i++) {
+            for (int j = 0; j < threeInARow.getColumns(); j++) {
+                JTextField textField = new JTextField();
+                textField.setEditable(true);
+                textField.setHorizontalAlignment(SwingConstants.CENTER);
+                textField.setFont(new Font("Comic Sans", Font.BOLD, 24));
+                gamePanel.add(textField);
+                cells[i][j] = textField;
+            }
+        }
+
+        frame.add(gamePanel);
 
         //Display Main Window:
         frame.setVisible(true);

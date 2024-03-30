@@ -11,6 +11,7 @@ public class ThreeInARow {
     private final Player player2;
     private final int rounds;
     private char[][] gameBoard;
+    private boolean playerTurn;
 
 
     public ThreeInARow(int rows, int columns, Player player1, Player player2, int rounds) {
@@ -20,15 +21,43 @@ public class ThreeInARow {
         this.player2 = player2;
         this.rounds = rounds;
         gameBoard = new char[rows][columns];
+        playerTurn = false;
         initializeGameBoard();
     }
 
+    /**
+     * Method to initialize an empty Game Board,
+     * when the game board is full this method can be used to reset it.
+     */
     private void initializeGameBoard() {
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < columns; j++){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 gameBoard[i][j] = ' ';
             }
         }
+    }
+
+    /**
+     * Method to check if the game board is full of symbols.
+     *
+     * @return {@code false} if one of the fields is empty, otherwise {@code true}
+     */
+    public boolean isFull() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (gameBoard[i][j] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method to reset the gameBoard to empty fields.
+     */
+    private void resetGameBoard() {
+        initializeGameBoard();
     }
 
     public int getRows() {

@@ -17,7 +17,7 @@ public class GUI {
         int width = 800;
         int height = 600;
 
-        //Tools and dimension to center the screen when it opens:
+        //Tools and dimension to center the screen when frame opens:
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         int x = (int) (dimension.getWidth() / 2f) - Math.round(width / 2f);
@@ -28,7 +28,7 @@ public class GUI {
         frame.setBounds(x, y, width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //When the game starts it asks for the name and symbol to play with:
+        //When the game starts it asks for the name of the player:
         JPanel startPanel = new JPanel(null);
 
         JLabel player1Label = new JLabel("Player 1 Name:");
@@ -74,10 +74,6 @@ public class GUI {
     }
 
     private void startGame(Player player1, Player player2, JFrame frame) {
-        //JPanel pointsPanel = new JPanel(new GridLayout(2,2,5,5));
-
-
-
         threeInARow = new ThreeInARow(3, 3, player1, player2, 3);
         JPanel gamePanel = new JPanel(new GridLayout(3, 3, 5, 5));
 
@@ -93,10 +89,23 @@ public class GUI {
                 cells[i][j] = textField;
             }
         }
-        frame.getContentPane().removeAll();
 
-        //frame.add(pointsPanel);
-        frame.add(gamePanel);
+        //Creates the pointsPanel:
+        JPanel pointsPanel = new JPanel(new GridLayout(2,2,5,5));
+        JLabel labelName1 = new JLabel(player1.getPlayerName());
+        JLabel labelName2 = new JLabel(player2.getPlayerName());
+        JLabel pointsPlayer1 = new JLabel("Points " + player1.getPlayerPoints());
+        JLabel pointsPlayer2 = new JLabel("Points " + player2.getPlayerPoints());
+
+        pointsPanel.add(labelName1);
+        pointsPanel.add(pointsPlayer1);
+        pointsPanel.add(labelName2);
+        pointsPanel.add(pointsPlayer2);
+
+        frame.getContentPane().removeAll();
+        frame.setLayout(new BorderLayout());
+        frame.add(pointsPanel, BorderLayout.NORTH);
+        frame.add(gamePanel, BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();

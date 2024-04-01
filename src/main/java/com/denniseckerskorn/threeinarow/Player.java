@@ -5,10 +5,13 @@ import java.util.Objects;
 //Class for the player:
 public class Player {
     private final String playerName;
+    private GameSymbols gameSymbols;
     private int playerPoints;
 
-    public Player(String playerName) {
+
+    public Player(String playerName, GameSymbols gameSymbols) {
         this.playerName = playerName;
+        this.gameSymbols = gameSymbols;
         playerPoints = 0;
     }
 

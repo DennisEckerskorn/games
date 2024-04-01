@@ -2,6 +2,8 @@ package com.denniseckerskorn.threeinarow;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //User interface for the game 3 in a row:
 public class GUI {
@@ -11,8 +13,6 @@ public class GUI {
     private JTextField[][] cells;
 
     public GUI() {
-        player1 = new Player("Dennis");
-        player2 = new Player("Miriam");
         //Frame size:
         int width = 800;
         int height = 600;
@@ -27,6 +27,56 @@ public class GUI {
         JFrame frame = new JFrame("Three in a Row");
         frame.setBounds(x, y, width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //When the game starts it asks for the name and symbol to play with:
+        JPanel startPanel = new JPanel(null);
+
+        JLabel player1Label = new JLabel("Player 1 Name:");
+        player1Label.setBounds(40, 50, 100, 100);
+        JTextField player1NameField = new JTextField();
+        player1NameField.setBounds(145, 90, 200, 20);
+
+        JLabel player2Label = new JLabel("Player 2 Name:");
+        player2Label.setBounds(40, 100, 100, 100);
+        JTextField player2NameField = new JTextField();
+        player2NameField.setBounds(145, 140, 200, 20);
+
+        JButton startButton = new JButton("Start Game");
+        startButton.setBounds(80, 180, 120, 30);
+
+        startPanel.add(player1Label);
+        startPanel.add(player1NameField);
+        startPanel.add(player2Label);
+        startPanel.add(player2NameField);
+        startPanel.add(startButton);
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String player1Name = player1NameField.getText().trim();
+                String player2Name = player2NameField.getText().trim();
+
+                if (!player1Name.isEmpty() && !player2Name.isEmpty()) {
+                    player1 = new Player(player1Name, GameSymbols.X);
+                    player2 = new Player(player2Name, GameSymbols.O);
+                    startGame(player1, player2, frame);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Please enter names for both players");
+                }
+            }
+        });
+
+        frame.add(startPanel);
+
+
+        //Display Main Window:
+        frame.setVisible(true);
+    }
+
+    private void startGame(Player player1, Player player2, JFrame frame) {
+        //JPanel pointsPanel = new JPanel(new GridLayout(2,2,5,5));
+
+
 
         threeInARow = new ThreeInARow(3, 3, player1, player2, 3);
         JPanel gamePanel = new JPanel(new GridLayout(3, 3, 5, 5));
@@ -43,10 +93,12 @@ public class GUI {
                 cells[i][j] = textField;
             }
         }
+        frame.getContentPane().removeAll();
 
+        //frame.add(pointsPanel);
         frame.add(gamePanel);
 
-        //Display Main Window:
-        frame.setVisible(true);
+        frame.revalidate();
+        frame.repaint();
     }
 }

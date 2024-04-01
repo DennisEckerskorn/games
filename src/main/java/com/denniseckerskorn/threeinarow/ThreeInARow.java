@@ -60,6 +60,10 @@ public class ThreeInARow {
         initializeGameBoard();
     }
 
+    public void playerTurn() {
+        playerTurn = !playerTurn;
+    }
+
     public int getRows() {
         return rows;
     }

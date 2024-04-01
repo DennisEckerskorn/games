@@ -21,7 +21,7 @@ public class ThreeInARow {
         this.player2 = player2;
         this.rounds = rounds;
         gameBoard = new char[rows][columns];
-        playerTurn = false;
+        playerTurn = true;
         initializeGameBoard();
     }
 
@@ -60,8 +60,35 @@ public class ThreeInARow {
         initializeGameBoard();
     }
 
-    public void playerTurn() {
+    public boolean switchPlayerTurn() {
         playerTurn = !playerTurn;
+        return playerTurn;
+    }
+
+    public boolean makeMove(int row, int col) {
+        if (row >= 0 && row < rows && col >= 0 && col < columns) {
+            if (isEmpty(row, col)) {
+                char symbol = getCurrentPlayer().getGameSymbols().toChar();
+                gameBoard[row][col] = symbol;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isEmpty(int rows, int cols) {
+        return gameBoard[rows][cols] == ' ';
+    }
+
+    public Player getCurrentPlayer() {
+        if (playerTurn) {
+            return player1;
+        } else {
+            return player2;
+        }
     }
 
     public int getRows() {
@@ -87,6 +114,7 @@ public class ThreeInARow {
     public char[][] getGameBoard() {
         return gameBoard;
     }
+
 
     @Override
     public boolean equals(Object o) {

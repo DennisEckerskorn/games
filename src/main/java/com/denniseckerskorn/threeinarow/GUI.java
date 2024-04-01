@@ -68,7 +68,6 @@ public class GUI {
 
         frame.add(startPanel);
 
-
         //Display Main Window:
         frame.setVisible(true);
     }
@@ -82,11 +81,44 @@ public class GUI {
         for (int i = 0; i < threeInARow.getRows(); i++) {
             for (int j = 0; j < threeInARow.getColumns(); j++) {
                 JTextField textField = new JTextField();
-                textField.setEditable(true);
+                textField.setEditable(false);
                 textField.setHorizontalAlignment(SwingConstants.CENTER);
                 textField.setFont(new Font("Comic Sans", Font.BOLD, 24));
                 gamePanel.add(textField);
                 cells[i][j] = textField;
+
+                char symbol = threeInARow.getGameBoard()[i][j];
+                if(symbol != ' ') {
+                    textField.setText(String.valueOf(symbol));
+                }
+
+                textField.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JTextField clickedTextField = (JTextField) e.getSource();
+                        int row = -1;
+                        int col = -1;
+                        for(int i = 0; i < cells.length; i++) {
+                            for(int j = 0; j < cells[i].length; j++) {
+                                if(cells[i][j] == clickedTextField) {
+                                    row = i;
+                                    col = j;
+                                    break;
+                                }
+                            }
+                            if(row != -1) {
+                                break;
+                            }
+                        }
+                        if(!threeInARow.isFull() && threeInARow.isEmpty(row, col)) {
+                            char symbol = threeInARow.getCurrentPlayer().getGameSymbols().toChar();
+                            clickedTextField.setText(String.valueOf(symbol));
+                            threeInARow.makeMove(row, col);
+                            updateGamePanel();
+                            threeInARow.switchPlayerTurn();
+                        }
+                    }
+                });
             }
         }
 
@@ -109,5 +141,14 @@ public class GUI {
 
         frame.revalidate();
         frame.repaint();
+    }
+
+    private void updateGamePanel() {
+        char[][] gameBoard = threeInARow.getGameBoard();
+        for(int i = 0; i < threeInARow.getRows(); i++) {
+            for(int j = 0; j < threeInARow.getColumns(); j++) {
+                cells[i][j].setText(String.valueOf(gameBoard[i][j]));
+            }
+        }
     }
 }

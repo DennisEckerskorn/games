@@ -20,4 +20,9 @@ public enum GameSymbols {
     public String getSymbol() {
         return symbol;
     }
+
+    public char toChar() {
+        return symbol.charAt(0);
+    }
+
 }

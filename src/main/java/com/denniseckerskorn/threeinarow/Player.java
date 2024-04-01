@@ -23,6 +23,10 @@ public class Player {
         return playerPoints;
     }
 
+    public GameSymbols getGameSymbols() {
+        return gameSymbols;
+    }
+
     /**
      * Method to increase the playerPoints by 1.
      */

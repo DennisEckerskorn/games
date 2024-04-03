@@ -11,6 +11,8 @@ public class GUI {
     private Player player2;
     private ThreeInARow threeInARow;
     private JTextField[][] cells;
+    private JLabel pointsPlayer1;
+    private JLabel pointsPlayer2;
 
     public GUI() {
         //Frame size:
@@ -88,7 +90,7 @@ public class GUI {
                 cells[i][j] = textField;
 
                 char symbol = threeInARow.getGameBoard()[i][j];
-                if(symbol != ' ') {
+                if (symbol != ' ') {
                     textField.setText(String.valueOf(symbol));
                 }
 
@@ -98,23 +100,28 @@ public class GUI {
                         JTextField clickedTextField = (JTextField) e.getSource();
                         int row = -1;
                         int col = -1;
-                        for(int i = 0; i < cells.length; i++) {
-                            for(int j = 0; j < cells[i].length; j++) {
-                                if(cells[i][j] == clickedTextField) {
+                        for (int i = 0; i < cells.length; i++) {
+                            for (int j = 0; j < cells[i].length; j++) {
+                                if (cells[i][j] == clickedTextField) {
                                     row = i;
                                     col = j;
                                     break;
                                 }
                             }
-                            if(row != -1) {
+                            if (row != -1) {
                                 break;
                             }
                         }
-                        if(!threeInARow.isFull() && threeInARow.isEmpty(row, col)) {
+                        if (!threeInARow.isFull() && threeInARow.isEmpty(row, col)) {
                             char symbol = threeInARow.getCurrentPlayer().getGameSymbols().toChar();
                             clickedTextField.setText(String.valueOf(symbol));
                             threeInARow.makeMove(row, col);
                             threeInARow.switchPlayerTurn();
+
+                            if (threeInARow.isWinner()) {
+                                Player currentPlayer = threeInARow.getCurrentPlayer();
+                                currentPlayer.addPoint();
+                            }
                         }
                     }
                 });
@@ -122,11 +129,16 @@ public class GUI {
         }
 
         //Creates the pointsPanel:
-        JPanel pointsPanel = new JPanel(new GridLayout(2,2,5,5));
+        JPanel pointsPanel = new JPanel(new GridLayout(2, 2, 5, 5));
         JLabel labelName1 = new JLabel(player1.getPlayerName());
         JLabel labelName2 = new JLabel(player2.getPlayerName());
-        JLabel pointsPlayer1 = new JLabel("Points " + player1.getPlayerPoints());
-        JLabel pointsPlayer2 = new JLabel("Points " + player2.getPlayerPoints());
+        if (pointsPlayer1 != null && pointsPlayer2 != null) {
+            pointsPlayer1.setText("Points " + player1.getPlayerPoints());
+            pointsPlayer2.setText("Points " + player2.getPlayerPoints());
+        } else {
+            pointsPlayer1 = new JLabel("Points " + player1.getPlayerPoints());
+            pointsPlayer2 = new JLabel("Points " + player2.getPlayerPoints());
+        }
 
         pointsPanel.add(labelName1);
         pointsPanel.add(pointsPlayer1);

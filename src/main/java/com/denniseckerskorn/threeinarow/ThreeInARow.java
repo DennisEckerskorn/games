@@ -21,7 +21,7 @@ public class ThreeInARow {
         this.player2 = player2;
         this.rounds = rounds;
         gameBoard = new char[rows][columns];
-        playerTurn = true;
+        playerTurn = false;
         initializeGameBoard();
     }
 
@@ -77,6 +77,25 @@ public class ThreeInARow {
         } else {
             return false;
         }
+    }
+
+    public boolean isWinner() {
+
+        char symbol = getCurrentPlayer().getGameSymbols().toChar();
+        for (int i = 0; i < rows; i++) {
+            int counterSymbols = 0;
+            for (int j = 0; j < columns; j++) {
+                if (gameBoard[i][j] == symbol) {
+                    counterSymbols++;
+                    if (counterSymbols == 3) { //Digit can be pased as parameter
+                        return true;
+                    }
+                } else {
+                    counterSymbols = 0;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean isEmpty(int rows, int cols) {

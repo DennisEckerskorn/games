@@ -114,7 +114,6 @@ public class GUI {
                             char symbol = threeInARow.getCurrentPlayer().getGameSymbols().toChar();
                             clickedTextField.setText(String.valueOf(symbol));
                             threeInARow.makeMove(row, col);
-                            updateGamePanel();
                             threeInARow.switchPlayerTurn();
                         }
                     }
@@ -141,14 +140,5 @@ public class GUI {
 
         frame.revalidate();
         frame.repaint();
-    }
-
-    private void updateGamePanel() {
-        char[][] gameBoard = threeInARow.getGameBoard();
-        for(int i = 0; i < threeInARow.getRows(); i++) {
-            for(int j = 0; j < threeInARow.getColumns(); j++) {
-                cells[i][j].setText(String.valueOf(gameBoard[i][j]));
-            }
-        }
     }
 }

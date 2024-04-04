@@ -80,6 +80,9 @@ public class GUI {
 
         cells = new JTextField[threeInARow.getRows()][threeInARow.getColumns()];
 
+        pointsPlayer1 = new JLabel("Points: " + player1.getPlayerPoints());
+        pointsPlayer2 = new JLabel("Points: " + player2.getPlayerPoints());
+
         for (int i = 0; i < threeInARow.getRows(); i++) {
             for (int j = 0; j < threeInARow.getColumns(); j++) {
                 JTextField textField = new JTextField();
@@ -116,12 +119,17 @@ public class GUI {
                             char symbol = threeInARow.getCurrentPlayer().getGameSymbols().toChar();
                             clickedTextField.setText(String.valueOf(symbol));
                             threeInARow.makeMove(row, col);
-                            threeInARow.switchPlayerTurn();
 
                             if (threeInARow.isWinner()) {
-                                Player currentPlayer = threeInARow.getCurrentPlayer();
-                                currentPlayer.addPoint();
+                                Player winningPlayer = threeInARow.getCurrentPlayer();
+                                if (winningPlayer == player1) {
+                                    pointsPlayer1.setText("Points: " + player1.getPlayerPoints());
+                                } else if (winningPlayer == player2) {
+                                    pointsPlayer2.setText("Points: " + player2.getPlayerPoints());
+                                }
+                                winningPlayer.addPoint();
                             }
+                            threeInARow.switchPlayerTurn();
                         }
                     }
                 });
@@ -132,13 +140,6 @@ public class GUI {
         JPanel pointsPanel = new JPanel(new GridLayout(2, 2, 5, 5));
         JLabel labelName1 = new JLabel(player1.getPlayerName());
         JLabel labelName2 = new JLabel(player2.getPlayerName());
-        if (pointsPlayer1 != null && pointsPlayer2 != null) {
-            pointsPlayer1.setText("Points " + player1.getPlayerPoints());
-            pointsPlayer2.setText("Points " + player2.getPlayerPoints());
-        } else {
-            pointsPlayer1 = new JLabel("Points " + player1.getPlayerPoints());
-            pointsPlayer2 = new JLabel("Points " + player2.getPlayerPoints());
-        }
 
         pointsPanel.add(labelName1);
         pointsPanel.add(pointsPlayer1);

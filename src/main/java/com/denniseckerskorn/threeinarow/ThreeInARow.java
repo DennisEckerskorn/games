@@ -78,6 +78,25 @@ public class ThreeInARow {
             return false;
         }
     }
+//not finished
+    public boolean checkWinningRows(int quantitySymbols, Player player) {
+        char symbol = player.getGameSymbols().toChar();
+        int counter = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (gameBoard[i][j] == symbol) {
+                    counter++;
+                    if (counter == quantitySymbols) {
+                        return true;
+                    }
+                } else {
+                    counter = 0;
+                }
+            }
+        }
+        return false;
+    }
 
     public boolean isWinner() {
         char symbol1 = player1.getGameSymbols().toChar();
@@ -138,79 +157,79 @@ public class ThreeInARow {
     }
 
 
-    public boolean isEmpty ( int rows, int cols){
-            return gameBoard[rows][cols] == ' ';
-        }
+    public boolean isEmpty(int rows, int cols) {
+        return gameBoard[rows][cols] == ' ';
+    }
 
-        public Player getCurrentPlayer () {
-            if (playerTurn) {
-                return player1;
-            } else {
-                return player2;
-            }
-        }
-
-        public int getRows () {
-            return rows;
-        }
-
-        public int getColumns () {
-            return columns;
-        }
-
-        public Player getPlayer1 () {
+    public Player getCurrentPlayer() {
+        if (playerTurn) {
             return player1;
-        }
-
-        public Player getPlayer2 () {
+        } else {
             return player2;
         }
-
-        public int getRounds () {
-            return rounds;
-        }
-
-        public char[][] getGameBoard () {
-            return gameBoard;
-        }
-
-
-        @Override
-        public boolean equals (Object o){
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            ThreeInARow that = (ThreeInARow) o;
-
-            if (rows != that.rows) return false;
-            if (columns != that.columns) return false;
-            if (rounds != that.rounds) return false;
-            if (!Objects.equals(player1, that.player1)) return false;
-            if (!Objects.equals(player2, that.player2)) return false;
-            return Arrays.deepEquals(gameBoard, that.gameBoard);
-        }
-
-        @Override
-        public int hashCode () {
-            int result = rows;
-            result = 31 * result + columns;
-            result = 31 * result + (player1 != null ? player1.hashCode() : 0);
-            result = 31 * result + (player2 != null ? player2.hashCode() : 0);
-            result = 31 * result + rounds;
-            result = 31 * result + Arrays.deepHashCode(gameBoard);
-            return result;
-        }
-
-        @Override
-        public String toString () {
-            return "ThreeInARow{" +
-                    "rows=" + rows +
-                    ", columns=" + columns +
-                    ", player1=" + player1 +
-                    ", player2=" + player2 +
-                    ", rounds=" + rounds +
-                    ", gameBoard=" + Arrays.toString(gameBoard) +
-                    '}';
-        }
     }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public char[][] getGameBoard() {
+        return gameBoard;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ThreeInARow that = (ThreeInARow) o;
+
+        if (rows != that.rows) return false;
+        if (columns != that.columns) return false;
+        if (rounds != that.rounds) return false;
+        if (!Objects.equals(player1, that.player1)) return false;
+        if (!Objects.equals(player2, that.player2)) return false;
+        return Arrays.deepEquals(gameBoard, that.gameBoard);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rows;
+        result = 31 * result + columns;
+        result = 31 * result + (player1 != null ? player1.hashCode() : 0);
+        result = 31 * result + (player2 != null ? player2.hashCode() : 0);
+        result = 31 * result + rounds;
+        result = 31 * result + Arrays.deepHashCode(gameBoard);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ThreeInARow{" +
+                "rows=" + rows +
+                ", columns=" + columns +
+                ", player1=" + player1 +
+                ", player2=" + player2 +
+                ", rounds=" + rounds +
+                ", gameBoard=" + Arrays.toString(gameBoard) +
+                '}';
+    }
+}
 

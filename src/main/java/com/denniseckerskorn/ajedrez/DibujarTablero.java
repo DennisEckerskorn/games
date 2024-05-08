@@ -10,17 +10,17 @@ public class DibujarTablero {
      * Método que genera filas, sirve para generar la fila 1 a la 7.
      * @param contadorInicio valor inicial para el bucle, normalmente 1.
      * @param contadorFinal valor final para el bucle, normalmente 8.
-     * @param izquierda Simbolos.IZQUIERDA
-     * @param horizontal Simbolos.HORIZONTAL
-     * @param centro Simbolos.CENTRO
-     * @param derecha Simbolos.DERECHA
+     * @param s1 Simbolos.IZQUIERDA
+     * @param s2 Simbolos.HORIZONTAL
+     * @param s3 Simbolos.CENTRO
+     * @param s4 Simbolos.DERECHA
      */
-    public static void generarFila(int contadorInicio, int contadorFinal, String izquierda, String horizontal, String centro, String derecha) {
-        System.out.print("  " + izquierda + horizontal);
+    public static void generarFila(int contadorInicio, int contadorFinal, String s1, String s2, String s3, String s4) {
+        System.out.print("  " + s1 + s2);
         for (int contador = contadorInicio; contador < contadorFinal; contador++) {
-            System.out.print(horizontal + centro + horizontal);
+            System.out.print(s2 + s3 + s2);
         }
-        System.out.println(horizontal + derecha);
+        System.out.println(s2 + s4);
     }
 
     /**
@@ -30,75 +30,72 @@ public class DibujarTablero {
         System.out.println("    a  b  c  d  e  f  g  h");
     }
 
+    public static void generarContenido(int posicionCasilla, int contadorInicio, int contadorFinal, String s1, String s2, String s3) {
+        System.out.print(" " + (posicionCasilla));
+        for (int columna = contadorInicio; columna < contadorFinal; columna++) {
+            System.out.print(s1 + s2 + s3);
+        }
+        System.out.println(s1 + "  " + (posicionCasilla));
+    }
+
+    public static void generarVariosContenidos() {
+        for(int i = 8; i >= 1; i--) {
+            generarContenido(i, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+        }
+    }
+
+    public static void generarTablero() {
+        pintarLetras();
+        for(int i = 0; i < 8; i++) {
+            if(i == 0) {
+                generarFila(1, 8, Simbolos.ARRIBA_IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.ARRIBA, Simbolos.ARRIBA_DERECHA);
+            } else {
+
+            }
+        }
+    }
+
     public static void dibujarTablero() {
 
         // Pintando letras de la cabecera
         pintarLetras();
 
         //Fila 0
-        System.out.print("  " + Simbolos.ARRIBA_IZQUIERDA + Simbolos.HORIZONTAL);
-        for (int contador = 1; contador < 8; contador++) {
-            System.out.print(Simbolos.HORIZONTAL + Simbolos.ARRIBA + Simbolos.HORIZONTAL);
-        }
-        System.out.println(Simbolos.HORIZONTAL + Simbolos.ARRIBA_DERECHA);
-        
+
+
         //Contenido fila 0
-        System.out.print(" " + (8));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (8));
-        
+        generarContenido(8, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 1
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
         //Contenido fila 1
-        System.out.print(" " + (7));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (7));
-        
+        generarContenido(7, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 2
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
         //Contenido fila 2
-        System.out.print(" " + (6));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (6));
-        
+        generarContenido(6, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 3
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
         //Contenido fila 3
-        System.out.print(" " + (5));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (5));
-        
+        generarContenido(5, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 4
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
         //Contenido fila 4
-        System.out.print(" " + (4));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (4));
-        
+        generarContenido(4, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 5
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
         //Contenido fila 5
-        System.out.print(" " + (3));
-        for (int columna = 0; columna < 8; columna++) {
-            System.out.print(Simbolos.VERTICAL + Simbolos.ESPACIO_EN_BLANCO + Simbolos.ESPACIO_EN_BLANCO);
-        }
-        System.out.println(Simbolos.VERTICAL + "  " + (3));
-        
+        generarContenido(3, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+
         //Fila 6
         generarFila(1,8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
         
@@ -120,11 +117,8 @@ public class DibujarTablero {
         System.out.println(Simbolos.VERTICAL + "  " + (1));        
         
         //Pie del tablero
-        System.out.print("  " + Simbolos.ABAJO_IZQUIERDA + Simbolos.HORIZONTAL);
-        for (int contador = 1; contador < 8; contador++) {
-            System.out.print(Simbolos.HORIZONTAL + Simbolos.ABAJO + Simbolos.HORIZONTAL);
-        }
-        System.out.println(Simbolos.HORIZONTAL + Simbolos.ABAJO_DERECHA);
+        generarFila(1, 8, Simbolos.ABAJO_IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.ABAJO, Simbolos.ABAJO_DERECHA);
+
         
         //Letras del pie del tablero
         pintarLetras();

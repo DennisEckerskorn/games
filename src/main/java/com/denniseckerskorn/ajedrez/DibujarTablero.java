@@ -9,14 +9,14 @@ public class DibujarTablero {
     }
 
     /**
-     * Método que sirve para pintar unas letras al principio y al final del tablero
+     * Mï¿½todo que sirve para pintar unas letras al principio y al final del tablero
      */
     public static void pintarLetras() {
         System.out.println("    a  b  c  d  e  f  g  h");
     }
 
     /**
-     * Método que genera filas, sirve para generar la fila 1 a la 7.
+     * Mï¿½todo que genera filas, sirve para generar la fila 1 a la 7.
      *
      * @param contadorInicio valor inicial para el bucle, normalmente 1.
      * @param contadorFinal  valor final para el bucle, normalmente 8.

@@ -4,6 +4,7 @@ public class DibujarTablero {
 
     public static void main(String[] args) {
         generarTablero();
+        generarTablero1();
     }
 
     /**
@@ -52,7 +53,7 @@ public class DibujarTablero {
         System.out.println(s1 + "  " + (posicionCasilla));
     }
 
-    /**
+    /** falta ajustar javadoc
      * Metodo que usa un contador que decrementa para la posición de cada fila (casilla).
      * Se pintan las letras y empieza el bucle para genera filas y contenido.
      * Si el contador i es igual a 0 imprime una fila diferente al ser la primera y decrementa el contador en 1.
@@ -60,22 +61,19 @@ public class DibujarTablero {
      * en este caso imprime una última fila que es diferente a las otras y sale del bucle.
      */
     public static void generarTablero() {
-        int contadorContenido = 8;
         pintarLetras();
-        for (int i = 0; i < 8; i++) {
-            if (i == 0) {
-                generarFila(1, 8, Simbolos.ARRIBA_IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.ARRIBA, Simbolos.ARRIBA_DERECHA);
-                generarContenido(contadorContenido, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
-                contadorContenido--;
-            }
-            generarFila(1, 8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
-            generarContenido(contadorContenido, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
-            contadorContenido--;
-            if (contadorContenido == 0) {
+        for (int i = 8; i >= 0; i--) {
+            if (i != 0) {
+                if (i == 8) {
+                    generarFila(1, 8, Simbolos.ARRIBA_IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.ARRIBA, Simbolos.ARRIBA_DERECHA);
+                } else {
+                    generarFila(1, 8, Simbolos.IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.CENTRO, Simbolos.DERECHA);
+                }
+                generarContenido(i, 0, 8, Simbolos.VERTICAL, Simbolos.ESPACIO_EN_BLANCO, Simbolos.ESPACIO_EN_BLANCO);
+            } else {
                 generarFila(1, 8, Simbolos.ABAJO_IZQUIERDA, Simbolos.HORIZONTAL, Simbolos.ABAJO, Simbolos.ABAJO_DERECHA);
-                pintarLetras();
-                break;
             }
         }
+        pintarLetras();
     }
 }

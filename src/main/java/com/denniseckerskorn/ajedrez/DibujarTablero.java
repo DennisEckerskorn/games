@@ -25,11 +25,13 @@ public class DibujarTablero {
      * @param s4             Simbolos
      */
     public static void generarFila(int contadorInicio, int contadorFinal, String s1, String s2, String s3, String s4) {
-        System.out.print("  " + s1 + s2);
+        StringBuilder sb = new StringBuilder();
+        sb.append("  ").append(s1).append(s2);
         for (int contador = contadorInicio; contador < contadorFinal; contador++) {
-            System.out.print(s2 + s3 + s2);
+            sb.append(s2).append(s3).append(s2);
         }
-        System.out.println(s2 + s4);
+        sb.append(s2).append(s4).append("\n");
+        System.out.print(sb);
     }
 
     /**
@@ -45,11 +47,13 @@ public class DibujarTablero {
      * @param s3              Simbolos
      */
     public static void generarContenido(int posicionCasilla, int contadorInicio, int contadorFinal, String s1, String s2, String s3) {
-        System.out.print(" " + (posicionCasilla));
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ").append(posicionCasilla);
         for (int columna = contadorInicio; columna < contadorFinal; columna++) {
-            System.out.print(s1 + s2 + s3);
+            sb.append(s1).append(s2).append(s3);
         }
-        System.out.println(s1 + "  " + (posicionCasilla));
+        sb.append(s1).append("  ").append(posicionCasilla).append("\n");
+        System.out.print(sb);
     }
 
     /**

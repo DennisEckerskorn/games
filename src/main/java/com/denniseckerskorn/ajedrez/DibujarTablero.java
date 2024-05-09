@@ -7,7 +7,7 @@ public class DibujarTablero {
     }
 
     /**
-     * Metodo que sirve para pintar unas letras al principio y al final del tablero
+     * Método que pinta las letras al principio y al final del tablero.
      */
     public static void pintarLetras() {
         String letras = "    a  b  c  d  e  f  g  h";
@@ -15,15 +15,14 @@ public class DibujarTablero {
     }
 
     /**
-     * Metodo que genera filas, sirve para generar una fila por cada iteración del bucle.
-     * Recibe los contadores del bucle for y 4 String como parámetros para los direcciones.
+     * Método que genera una fila del tablero.
      *
-     * @param contadorInicio valor inicial para el bucle, normalmente 1.
-     * @param contadorFinal  valor final para el bucle, normalmente 8.
-     * @param s1             Simbolos
-     * @param s2             Simbolos
-     * @param s3             Simbolos
-     * @param s4             Simbolos
+     * @param contadorInicio valor inicial para el bucle, debe estar entre 1 y 8.
+     * @param contadorFinal  valor final para el bucle, debe estar entre 1 y 8.
+     * @param s1             símbolo inicial de la fila.
+     * @param s2             símbolo medio de la fila.
+     * @param s3             símbolo final de la fila.
+     * @param s4             símbolo al final de la fila.
      */
     public static void generarFila(int contadorInicio, int contadorFinal, String s1, String s2, String s3, String s4) {
         StringBuilder sb = new StringBuilder();
@@ -36,16 +35,14 @@ public class DibujarTablero {
     }
 
     /**
-     * Metodo que sirve para generar el contenido de las filas creadas por el metodo previo.
-     * Recibe como prámetro la posición de la casilla y los contadores para el bucle for.
-     * También recibe las direcciones como String.
+     * Método que genera el contenido de una fila del tablero.
      *
-     * @param posicionCasilla La posición de cada fila
-     * @param contadorInicio  Contador bucle inicial, normalmente 0
-     * @param contadorFinal   Contador bucle final, normalmente 8
-     * @param s1              Simbolos
-     * @param s2              Simbolos
-     * @param s3              Simbolos
+     * @param posicionCasilla posición de la casilla en la fila.
+     * @param contadorInicio  contador inicial del bucle, normalmente 0.
+     * @param contadorFinal   contador final del bucle, normalmente 8.
+     * @param s1              símbolo a la izquierda de cada casilla.
+     * @param s2              símbolo dentro de cada casilla.
+     * @param s3              símbolo entre casillas.
      */
     public static void generarContenido(int posicionCasilla, int contadorInicio, int contadorFinal, String s1, String s2, String s3) {
         StringBuilder sb = new StringBuilder();
@@ -58,9 +55,7 @@ public class DibujarTablero {
     }
 
     /**
-     * Metodo que usa un bucle para mostrar las filas y el contenido de las filas.
-     * Usa el contador i para el número de la fila o casilla.
-     * Las filas y el contenido son métodos invocados.
+     * Método que genera el tablero completo.
      */
     public static void generarTablero() {
         pintarLetras();

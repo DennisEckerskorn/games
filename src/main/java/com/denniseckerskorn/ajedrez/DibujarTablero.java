@@ -10,7 +10,8 @@ public class DibujarTablero {
      * Metodo que sirve para pintar unas letras al principio y al final del tablero
      */
     public static void pintarLetras() {
-        System.out.println("    a  b  c  d  e  f  g  h");
+        String letras = "    a  b  c  d  e  f  g  h";
+        System.out.println(letras);
     }
 
     /**

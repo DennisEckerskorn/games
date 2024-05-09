@@ -4,7 +4,6 @@ public class DibujarTablero {
 
     public static void main(String[] args) {
         generarTablero();
-        generarTablero1();
     }
 
     /**
@@ -53,12 +52,10 @@ public class DibujarTablero {
         System.out.println(s1 + "  " + (posicionCasilla));
     }
 
-    /** falta ajustar javadoc
-     * Metodo que usa un contador que decrementa para la posición de cada fila (casilla).
-     * Se pintan las letras y empieza el bucle para genera filas y contenido.
-     * Si el contador i es igual a 0 imprime una fila diferente al ser la primera y decrementa el contador en 1.
-     * Se imprimen el resto de filas y contenidos hasta que el contador llegue a 0,
-     * en este caso imprime una última fila que es diferente a las otras y sale del bucle.
+    /**
+     * Metodo que usa un bucle para mostrar las filas y el contenido de las filas.
+     * Usa el contador i para el número de la fila o casilla.
+     * Las filas y el contenido son métodos invocados.
      */
     public static void generarTablero() {
         pintarLetras();

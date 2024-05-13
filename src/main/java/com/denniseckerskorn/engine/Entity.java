@@ -5,7 +5,7 @@ import com.denniseckerskorn.engine.math.Vector2;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Entity {
+public abstract class Entity implements Updateable {
     private static int autoincrement = 0;
     private final int id;
     private final Vector2 position;

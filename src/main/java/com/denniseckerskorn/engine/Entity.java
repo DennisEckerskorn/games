@@ -42,17 +42,16 @@ public abstract class Entity implements Updateable {
         this.sprite = sprite;
     }
 
-
-    public static int getAutoincrement() {
-        return autoincrement;
+    public Entity(float x, float y, float width, float height, float hp, float damage) {
+        this(x, y, width, height, hp, damage, null);
     }
 
-    public int getId() {
-        return id;
+    public Collider getCollider() {
+        return collider;
     }
 
-    public Vector2 getPosition() {
-        return position;
+    public float getDamage() {
+        return damage;
     }
 
     public float getWidth() {
@@ -67,12 +66,20 @@ public abstract class Entity implements Updateable {
         return hp;
     }
 
-    public float getDamage() {
-        return damage;
+    public int getId() {
+        return id;
     }
 
-    public Collider getCollider() {
-        return collider;
+    public float getX() {
+        return position.getX();
+    }
+
+    public float getY() {
+        return position.getY();
+    }
+
+    public Vector2 getPosition() {
+        return position;
     }
 
     public BufferedImage getSprite() {

@@ -115,7 +115,7 @@ public class GUI {
                                 break;
                             }
                         }
-                        if (!threeInARow.isFull() && threeInARow.isEmpty(row, col)) {
+                        if (!threeInARow.isFull()) {
                             char symbol = threeInARow.getCurrentPlayer().getGameSymbols().toChar();
                             clickedTextField.setText(String.valueOf(symbol));
                             threeInARow.makeMove(row, col);
@@ -127,7 +127,17 @@ public class GUI {
                                 } else if (winningPlayer == player2) {
                                     pointsPlayer2.setText("Points: " + player2.getPlayerPoints());
                                 }
-                                winningPlayer.addPoint();
+
+                                if (threeInARow.isWinner() && threeInARow.isFull()) {
+                                    Player winningPlayerLast = threeInARow.getCurrentPlayer();
+                                    String winningMessage = "¡" + winningPlayerLast.getPlayerName() + " ha ganado la partida";
+                                    int choice = JOptionPane.showConfirmDialog(frame, winningMessage + "\n¿Desea reiniciar la partida?", "Partida terminada", JOptionPane.YES_NO_OPTION);
+                                    if (choice == JOptionPane.YES_OPTION) {
+                                        resetGame(frame);
+                                    } else {
+                                        System.exit(0);
+                                    }
+                                }
                             }
                             threeInARow.switchPlayerTurn();
                         }
@@ -153,5 +163,11 @@ public class GUI {
 
         frame.revalidate();
         frame.repaint();
+    }
+
+    private void resetGame(JFrame frame) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        new GUI();
     }
 }

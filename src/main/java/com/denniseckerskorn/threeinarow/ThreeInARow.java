@@ -67,7 +67,7 @@ public class ThreeInARow {
 
     public boolean makeMove(int row, int col) {
         if (row >= 0 && row < rows && col >= 0 && col < columns) {
-            if (isEmpty(row, col)) {
+            if (isBoardEmpty(row, col)) {
                 char symbol = getCurrentPlayer().getGameSymbols().toChar();
                 gameBoard[row][col] = symbol;
                 return true;
@@ -78,7 +78,8 @@ public class ThreeInARow {
             return false;
         }
     }
-//not finished
+
+    //not finished
     public boolean checkWinningRows(int quantitySymbols, Player player) {
         char symbol = player.getGameSymbols().toChar();
         int counter = 0;
@@ -109,6 +110,7 @@ public class ThreeInARow {
                 if (gameBoard[i][j] == symbol1) {
                     counterSymbolsRowsP1++;
                     if (counterSymbolsRowsP1 == 3) {
+                        player1.addPoint();
                         return true;
                     }
 
@@ -117,6 +119,7 @@ public class ThreeInARow {
                 } else if (gameBoard[i][j] == symbol2) {
                     counterSymbolsRowsP2++;
                     if (counterSymbolsRowsP2 == 3) {
+                        player2.addPoint();
                         return true;
                     }
                     // Reset counter for player 1 if there's a symbol of player 2
@@ -135,6 +138,7 @@ public class ThreeInARow {
                 if (gameBoard[i][j] == symbol1) {
                     counterSymbolsColumns1++;
                     if (counterSymbolsColumns1 == 3) {
+                        player1.addPoint();
                         return true;
                     }
                     // Reset counter for player 2 if there's a symbol of player 1
@@ -142,6 +146,7 @@ public class ThreeInARow {
                 } else if (gameBoard[i][j] == symbol2) {
                     counterSymbolsColumns2++;
                     if (counterSymbolsColumns2 == 3) {
+                        player2.addPoint();
                         return true;
                     }
                     // Reset counter for player 1 if there's a symbol of player 2
@@ -157,7 +162,7 @@ public class ThreeInARow {
     }
 
 
-    public boolean isEmpty(int rows, int cols) {
+    public boolean isBoardEmpty(int rows, int cols) {
         return gameBoard[rows][cols] == ' ';
     }
 

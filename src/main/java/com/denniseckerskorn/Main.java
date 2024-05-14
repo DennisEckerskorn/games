@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         //Three in a Row:
-        //GUI gui = new GUI();
+        GUI gui = new GUI();
 
 
         //Game Of Life:
@@ -16,7 +16,7 @@ public class Main {
 
 
         //Snake
-        SnakeGameExecute snakeGameExecute = new SnakeGameExecute();
+        //SnakeGameExecute snakeGameExecute = new SnakeGameExecute();
 
 
     }

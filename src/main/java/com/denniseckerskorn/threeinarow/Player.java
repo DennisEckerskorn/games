@@ -31,7 +31,7 @@ public class Player {
      * Method to increase the playerPoints by 1.
      */
     public void addPoint() {
-        playerPoints++;
+        playerPoints += 1;
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.denniseckerskorn.engine;
+package com.denniseckerskorn.engine.core;
 
 public interface Updateable {
     void update(double deltaTime);

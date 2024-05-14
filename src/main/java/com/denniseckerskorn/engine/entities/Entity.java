@@ -1,5 +1,7 @@
-package com.denniseckerskorn.engine;
+package com.denniseckerskorn.engine.entities;
 
+import com.denniseckerskorn.engine.core.Collider;
+import com.denniseckerskorn.engine.core.Updateable;
 import com.denniseckerskorn.engine.math.MathUtil;
 import com.denniseckerskorn.engine.math.Vector2;
 
@@ -125,11 +127,13 @@ public abstract class Entity implements Updateable {
         e.hp = MathUtil.clamp(e.hp, 0);
     }
 
-    //Implementar interface con estos metodos:
+    @Override
     public abstract void update(double deltaTime);
 
+    @Override
     public abstract void lastUpdate(double deltaTime);
 
+    @Override
     public abstract void postUpdate(double deltaTime);
 
 }

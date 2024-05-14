@@ -1,25 +1,20 @@
-package com.denniseckerskorn.snake;
+package com.denniseckerskorn.engine.core;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SnakeGameWindow extends JPanel implements Runnable {
+public class Game implements Runnable, Updateable {
     private final int width;
     private final int height;
     private final float fpsLimit;
     private Thread thread;
     private boolean finished;
-    //Falta añadir SnakeGame
 
-    public SnakeGameWindow(int width, int height, float fpsLimit) {
+    public Game(int width, int height, float fpsLimit) {
         this.width = width;
         this.height = height;
         this.fpsLimit = fpsLimit;
         this.finished = false;
-        setDoubleBuffered(true); //Evitar flickering
-        setPreferredSize(new Dimension(width, height));
-        setFocusable(true);
-        //SnakeGame falta
     }
 
     public void start() {
@@ -38,32 +33,33 @@ public class SnakeGameWindow extends JPanel implements Runnable {
             currentFrame = System.nanoTime();
             if (currentFrame - lastFrame > NANOS_BETWEEN_UPDATES) {
                 processInput();
+                //TODO: ajustar y sacar deltatime
                 update();
-                draw();
+                render();
                 lastFrame = currentFrame;
             }
         }
     }
 
-    private void draw() {
-        repaint();
+    private void render() {
+
+    }
+    @Override
+    public void update(double deltaTime) {
+
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        //snakeGame.draw(g2);
+    public void lastUpdate(double deltaTime) {
 
     }
 
-    private void update() {
-        // TODO: update
-        //snakeGame.update();
-        repaint();
+    @Override
+    public void postUpdate(double deltaTime) {
+
     }
 
     private void processInput() {
-        // TODO: processInput
+
     }
 }

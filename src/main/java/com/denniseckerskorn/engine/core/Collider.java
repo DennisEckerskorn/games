@@ -1,4 +1,4 @@
-package com.denniseckerskorn.engine;
+package com.denniseckerskorn.engine.core;
 
 public class Collider {
 

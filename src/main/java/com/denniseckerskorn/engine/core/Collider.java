@@ -1,8 +1,6 @@
 package com.denniseckerskorn.engine.core;
 
 public class Collider {
-
-
     private float xRight;
     private float xLeft;
     private float yUp;

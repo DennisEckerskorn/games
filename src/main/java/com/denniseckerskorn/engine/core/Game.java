@@ -1,21 +1,28 @@
 package com.denniseckerskorn.engine.core;
 
-import javax.swing.*;
-import java.awt.*;
+import com.denniseckerskorn.engine.graphics.RenderAPI;
 
-public class Game implements Runnable, Updateable {
+public abstract class Game implements Runnable, Updateable {
     private final int width;
     private final int height;
     private final float fpsLimit;
     private Thread thread;
     private boolean finished;
+    private RenderAPI renderAPI;
 
     public Game(int width, int height, float fpsLimit) {
         this.width = width;
         this.height = height;
         this.fpsLimit = fpsLimit;
         this.finished = false;
+        Blackboard.entityManager = createEntityManager();
     }
+
+    public void setRenderAPI(RenderAPI renderAPI) {
+        renderAPI = renderAPI;
+    }
+
+    public abstract EntityManager createEntityManager();
 
     public void start() {
         thread = new Thread(this);
@@ -24,14 +31,16 @@ public class Game implements Runnable, Updateable {
 
     @Override
     public void run() {
+        final long NANOS_IN_SECONDS = 1_000_000_000;
         final double NANOS_BETWEEN_UPDATES = 1_000_000_000 / fpsLimit;
         long currentFrame;
         long lastFrame = System.nanoTime();
+        double deltaTime;
 
         System.out.println("Iniciando hilo ...");
         while (!finished) {
             currentFrame = System.nanoTime();
-            double deltaTime = (currentFrame - lastFrame) / 1000_000_000.0;
+            deltaTime = (double) (currentFrame - lastFrame) / NANOS_IN_SECONDS;
             if (currentFrame - lastFrame > NANOS_BETWEEN_UPDATES) {
                 processInput();
 
@@ -60,25 +69,25 @@ public class Game implements Runnable, Updateable {
     }
 
     private void render() {
-
+        renderAPI.render();
     }
 
     @Override
     public void update(double deltaTime) {
-
+        Blackboard.entityManager.update(deltaTime);
     }
 
     @Override
     public void lastUpdate(double deltaTime) {
-
+        Blackboard.entityManager.lastUpdate(deltaTime);
     }
 
     @Override
     public void postUpdate(double deltaTime) {
-
+        Blackboard.entityManager.postUpdate(deltaTime);
     }
 
     private void processInput() {
-
+        Blackboard.entityManager.processInput();
     }
 }

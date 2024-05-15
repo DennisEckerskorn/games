@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class SnakeGameExecute {
     public SnakeGameExecute() {
+        /*
         JFrame frame = new JFrame();
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -16,5 +17,6 @@ public class SnakeGameExecute {
         snakeGameWindow.start();
         frame.pack();
         frame.setVisible(true);
+         */
     }
 }

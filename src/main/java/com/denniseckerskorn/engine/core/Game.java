@@ -19,7 +19,7 @@ public abstract class Game implements Runnable, Updateable {
     }
 
     public void setRenderAPI(RenderAPI renderAPI) {
-        renderAPI = renderAPI;
+        this.renderAPI = renderAPI;
     }
 
     public abstract EntityManager createEntityManager();

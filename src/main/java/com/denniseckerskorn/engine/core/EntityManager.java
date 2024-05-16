@@ -30,10 +30,22 @@ public abstract class EntityManager implements Updateable {
 
     public void removeEntity(Entity entity) {
         //TODO: Cambios de arrays, pool, evitar eliminar, tener en cuenta eliminar instanceof tambien
+        for(int i = 0; i < numEntities; i++) {
+            Entity other = entities[i];
+            if(entity.equals(other)) {
+                entities[i] = entities[numEntities - 1];
+                entities[numEntities - 1] = other;
+                numEntities--;
+            }
+        }
     }
 
     public Entity[] getEntities() {
         return entities;
+    }
+
+    public int getNumEntities() {
+        return numEntities;
     }
 
     @Override
@@ -62,4 +74,6 @@ public abstract class EntityManager implements Updateable {
             playableEntity.processInput();
         }
     }
+
+
 }

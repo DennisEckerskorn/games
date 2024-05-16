@@ -18,7 +18,6 @@ public class Main {
 
 
         //Snake
-        //SnakeGameExecute snakeGameExecute = new SnakeGameExecute();
         SnakeGame snakeGame = new SnakeGame(Settings.WIDTH, Settings.HEIGHT, Settings.ROWS, Settings.COLS, Settings.TARGET_FPS);
         SnakeSwingRenderer snakeSwingRenderer = new SnakeSwingRenderer(Settings.WIDTH, Settings.HEIGHT);
         snakeGame.setRenderAPI(snakeSwingRenderer);
@@ -26,11 +25,9 @@ public class Main {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setTitle("Snake");
-        frame.pack();
         frame.add(snakeSwingRenderer);
+        frame.pack();
         frame.setVisible(true);
         snakeGame.start();
-
-
     }
 }

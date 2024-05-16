@@ -10,17 +10,7 @@ public class SnakeSwingRenderer extends SwingRenderer {
     public SnakeSwingRenderer(int width, int height) {
         super(width, height);
     }
-
-    @Override
-    public void render() {
-        super.render();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-    }
-
+    
     @Override
     public void drawEntity(Graphics2D g2, Entity e) {
         g2.setColor(Color.ORANGE);

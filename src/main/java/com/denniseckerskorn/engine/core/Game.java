@@ -1,6 +1,7 @@
 package com.denniseckerskorn.engine.core;
 
 import com.denniseckerskorn.engine.graphics.RenderAPI;
+import com.denniseckerskorn.engine.graphics.swing.SwingRenderer;
 
 public abstract class Game implements Runnable, Updateable {
     private final int width;

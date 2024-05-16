@@ -25,12 +25,14 @@ public abstract class SwingRenderer extends JPanel implements RenderAPI {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
         drawBackground(g2);
+
         Entity[] entities = Blackboard.entityManager.getEntities();
         for (int i = 0; i < Blackboard.entityManager.getNumEntities(); i++) {
             drawEntity(g2, entities[i]);
         }
+
+
     }
 
     public abstract void drawEntity(Graphics2D g2, Entity e);

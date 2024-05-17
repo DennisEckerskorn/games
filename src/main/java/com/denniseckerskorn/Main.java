@@ -18,7 +18,7 @@ public class Main {
 
 
         //Snake
-        SnakeGame snakeGame = new SnakeGame(Settings.WIDTH, Settings.HEIGHT, Settings.ROWS, Settings.COLS, Settings.TARGET_FPS);
+        SnakeGame snakeGame = new SnakeGame(Settings.WIDTH, Settings.HEIGHT, Settings.ROWS, Settings.COLS, Settings.TARGET_FPS, Settings.MAX_ENTITIES);
         SnakeSwingRenderer snakeSwingRenderer = new SnakeSwingRenderer(Settings.WIDTH, Settings.HEIGHT);
         snakeGame.setRenderAPI(snakeSwingRenderer);
         JFrame frame = new JFrame();
